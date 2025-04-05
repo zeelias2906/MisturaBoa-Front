@@ -1,0 +1,11 @@
+<p>home works!</p>
+<p>Logado: {{!logado}}</p>
+<p *ngIf="logado">Usuário não logado</p>
+<p *ngIf="!logado">Usuário: {{usuario?.name}}</p>
+
+<p *ngIf="usuario?.role=='ROLE_ADMIN'">Usuário admin</p>
+
+<button (click)="logout()" *ngIf="!logado">logout</button>
+<button (click)="goToLogin()" *ngIf="logado">Login</button>
+<button (click)="goToProduto()" >Produtos</button>
+<button (click)="goToCategoria()" >Categorias</button>
