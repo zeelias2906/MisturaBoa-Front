@@ -17,7 +17,7 @@ import { ConfirmModalComponent } from '../../../../../core/components/modals/con
 export class CategoriaListComponent implements OnInit {
   categorias!: CategoriaInterface[];
   nomeCategoria!: string
-  filter: FilterSimple = {nome: ''}
+  filter: FilterSimple = {nome: '', idsCategoria: []}
 
   constructor(
     private categoriaStore: CategoriaStore, 

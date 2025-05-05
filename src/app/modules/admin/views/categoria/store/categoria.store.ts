@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 import { environment } from "../../../../../environments/environment"
 import { HttpClient } from "@angular/common/http"
 import { CategoriaInterface } from "../model/categoria.interface"
-import { filter, Observable } from "rxjs"
+import { Observable } from "rxjs"
 import { FilterSimple } from "../../../../../shared/models/filters/filter-simple.interface"
 
 @Injectable()

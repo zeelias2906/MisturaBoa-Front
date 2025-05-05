@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -17,7 +17,15 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxCurrencyDirective } from "ngx-currency";
+import { PedidoListComponent } from './views/pedido/list/pedido-list.component';
+import localePt from '@angular/common/locales/pt';
+import { JustificativaModalComponent } from './views/pedido/modals/justificativa-modal/justificativa-modal.component';
+import { TabPedidoComponent } from './views/pedido/components/tab-pedido/tab-pedido.component';
+import { AceitarPedidoModalComponent } from './views/pedido/modals/aceitar-pedido-modal/aceitar-pedido-modal.component';
+import { PedidoStore } from './views/pedido/stores/pedido.store';
+import { ImpressaoStore } from './views/pedido/stores/impressao.store';
 
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
@@ -25,6 +33,10 @@ import { NgxCurrencyDirective } from "ngx-currency";
     ProdutoRegisterComponent,
     CategoriaRegisterComponent,
     CategoriaListComponent,
+    PedidoListComponent,
+    JustificativaModalComponent,
+    TabPedidoComponent,
+    AceitarPedidoModalComponent,
   ],
   imports: [
     CommonModule,
@@ -43,8 +55,11 @@ import { NgxCurrencyDirective } from "ngx-currency";
   providers:[
     CategoriaStore,
     ProdutoStore,
+    PedidoStore,
+    ImpressaoStore,
     provideNgxMask(),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
   ]
 })
 export class AdminModule { }

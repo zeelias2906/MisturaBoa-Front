@@ -49,7 +49,7 @@ body {
       > form{
          color: var(--dark-brown);
          width: 100%;
-         >.row{
+         .row{
             margin-bottom: 1rem;
             width: 100%;
 
@@ -247,6 +247,13 @@ body {
                   &.ativo{
                      color: red;
                   }
+               }
+
+               .btn-delete{
+                  background-color: transparent;
+                  border: none;
+                  font-size: large;
+                  color: red;
                }
             }
          }

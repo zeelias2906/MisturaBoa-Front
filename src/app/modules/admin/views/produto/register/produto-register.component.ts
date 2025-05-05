@@ -149,13 +149,13 @@ export class ProdutoRegisterComponent {
       modalRef.componentInstance.message = 'Ao voltar todas as informações serão perdidas'
       modalRef.result.then(
         (result) => {
-          this.route.navigate(['administrador/produto'])
+          this.route.navigate(['/administrador/produto'])
         },
         (reason) => {}
       )
       return
     }
-    this.route.navigate(['administrador/produto'])
+    this.route.navigate(['/administrador/produto'])
   }
   
   onFileSelected(event: Event): void {
@@ -194,7 +194,7 @@ export class ProdutoRegisterComponent {
     this.produtoStore.save(this._patchValue()).subscribe({
       next: (data: any) => {
         this.spinner.hide()
-        this._openModal(SucessModalComponent, 'Produto cadastrado com sucesso', this.route.navigate(['administrador/produto']))
+        this._openModal(SucessModalComponent, 'Produto cadastrado com sucesso', this.route.navigate(['/administrador/produto']))
       },
       error: (error: any) => {
         this.spinner.hide()

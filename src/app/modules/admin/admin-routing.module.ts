@@ -4,6 +4,7 @@ import { CategoriaListComponent } from "./views/categoria/list/categoria-list.co
 import { CategoriaRegisterComponent } from "./views/categoria/register/categoria-register.component";
 import { ProdutoListComponent } from "./views/produto/list/produto-list.component";
 import { ProdutoRegisterComponent } from "./views/produto/register/produto-register.component";
+import { PedidoListComponent } from "./views/pedido/list/pedido-list.component";
 
 
 const routes: Routes = [
@@ -31,6 +32,15 @@ const routes: Routes = [
         path: 'form',
         component: ProdutoRegisterComponent
       }
+    ]
+  },
+  {
+    path: 'pedido',
+    children: [
+      {
+        path: '',
+        component: PedidoListComponent
+      },
     ]
   },
 ];

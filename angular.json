@@ -44,12 +44,7 @@
               "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
               "node_modules/@ctrl/ngx-emoji-mart/picker.css"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {

@@ -6,5 +6,4 @@ export interface UsuarioInterface{
 	senha: string
 	roleUsuario: string
 	pessoa: PessoaInterface
-
 }

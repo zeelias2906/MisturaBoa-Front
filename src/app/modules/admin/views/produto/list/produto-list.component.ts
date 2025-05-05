@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { CategoriaInterface } from '../../categoria/model/categoria.interface';
 import { FilterSimple } from '../../../../../shared/models/filters/filter-simple.interface';
-import { CategoriaStore } from '../../categoria/store/categoria.store';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthTokenService } from '../../../../../shared/services/auth-token.service';
@@ -18,7 +16,7 @@ import { ProdutoStore } from '../store/produto.store';
 })
 export class ProdutoListComponent {
   produtos!: ProdutoInterface[];
-  filter: FilterSimple = {nome: ''}
+  filter: FilterSimple = {nome: '', idsCategoria: []}
 
   constructor(
     private produtoStore: ProdutoStore, 
@@ -29,7 +27,7 @@ export class ProdutoListComponent {
   ){}
 
   ngOnInit(): void {
-      this.search()
+    this.search()
   }
 
   goToAdd(){

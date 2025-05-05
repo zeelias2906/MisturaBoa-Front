@@ -2,22 +2,27 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { InfoUsuario } from '../models/info-usuario.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthTokenService {
-
   decodedToken$!: Observable<any>;
+  private usuarioSubject = new BehaviorSubject<InfoUsuario | null>(this.getInfoUsuario());
+  public usuario$ = this.usuarioSubject.asObservable();
+
   constructor(
-    @Inject(DOCUMENT) private document: Document,
     private router: Router
   ) {}
 
   private get localStorage() {
-    return this.document.defaultView?.localStorage;
+    return typeof window !== 'undefined' ? window.localStorage : null;
+  }
+
+  atualizarUsuario(info: InfoUsuario | null) {
+    this.usuarioSubject.next(info);
   }
 
   getToken() {
@@ -29,6 +34,10 @@ export class AuthTokenService {
 
   getIdUsuario() {
     return this.decodePayloadJWT()?.decode.id;
+  }
+
+  getRoleUsuario() {
+    return this.decodePayloadJWT()?.decode.roleUsuario;
   }
 
   getInfoUsuario() : InfoUsuario | null {
@@ -74,18 +83,18 @@ export class AuthTokenService {
 
   decodePayloadJWT() {
     const token = this.getToken();
-
+  
     if (token) {
       const helper = new JwtHelperService();
-
+  
       const decodedToken = helper.decodeToken(token);
       const expirationDate = helper.getTokenExpirationDate(token);
-      const isExpired = helper.isTokenExpired(this.getToken());
-
+      const isExpired = helper.isTokenExpired(token);
+  
       if (isExpired) {
-        this.router.navigateByUrl('/');
-        return null;
+        return null; 
       }
+  
       this.decodedToken$ = of(decodedToken);
       return {
         decode: decodedToken,
@@ -93,8 +102,8 @@ export class AuthTokenService {
         isExpired: isExpired,
       };
     } else {
-      this.router.navigateByUrl('/');
-      return null;
+      return null; 
     }
   }
+  
 }

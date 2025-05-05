@@ -17,6 +17,7 @@ import { ErrorModalComponent } from './core/components/modals/error/error-modal.
 import { ConfirmModalComponent } from './core/components/modals/confirm/confirm-modal/confirm-modal.component';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AuthInterceptor } from './core/interceptor/auth.interceptor';
     RouterModule,
     SharedModule,
     NgbModule,
+    FormsModule,
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),

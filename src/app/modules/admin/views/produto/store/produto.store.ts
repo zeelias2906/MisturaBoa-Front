@@ -5,7 +5,9 @@ import { Observable } from "rxjs"
 import { ProdutoInterface } from "../model/produto.interface"
 import { FilterSimple } from "../../../../../shared/models/filters/filter-simple.interface"
 
-@Injectable()
+@Injectable({
+  providedIn: 'root', 
+})
 export class ProdutoStore {
 
   private readonly baseUrl = `${environment.url}produto/`
@@ -29,7 +31,7 @@ export class ProdutoStore {
     return this.http.get<any>(this.baseUrl + 'desativar-ativar/' + id )
   }
 
-  getAllByIdCategoria(id: number): Observable<ProdutoInterface>{
+  getAllByIdCategoria(id: number): Observable<ProdutoInterface[]>{
     return this.http.get<any>(this.baseUrl + 'produto-by-categoria/' + id )
   }
 
